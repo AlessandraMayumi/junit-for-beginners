@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BMICalculatorTest {
+public class BMICalculatorTest {
     @Test
     void should_Return_True_When_DietRecommended() {
         // given
@@ -70,5 +70,18 @@ class BMICalculatorTest {
         assertNull(coderWorstBMI);
     }
 
+    @Test
+    void should_ReturnCorrectBMI_When_CoderListNotEmpty(){
+        // given
+        List<Coder> coders = new ArrayList<>();
+        coders.add(new Coder(1.80, 60.0));
+        coders.add(new Coder(1.82, 98.0));
+        coders.add(new Coder(1.82, 64.7));
+        double[] expected = {18.52, 29.59, 19.53};
+        // when
+        double[] bmiScores = BMICalculator.getBMIScores(coders);
+        // then
+        assertArrayEquals(expected, bmiScores);
+    }
 
 }
