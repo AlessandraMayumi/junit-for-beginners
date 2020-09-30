@@ -1,9 +1,11 @@
-package test.java.com.healthycoderapp;
+package com.healthycoderapp;
 
-import main.java.com.healthycoderapp.BMICalculator;
-import main.java.com.healthycoderapp.Coder;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +13,24 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BMICalculatorTest {
-    @Test
-    void should_Return_True_When_DietRecommended() {
+    @BeforeAll
+    static void beforeAll() {
+        System.out.println("Before all unit tests");
+    }
+
+    @AfterAll
+    static void afterAll() {
+        System.out.println("After all unit tests");
+    }
+
+    @ParameterizedTest(name = "weight={0}, height={1}")
+//    @ValueSource(doubles = {89.0,95.0,110.0})
+//    @CsvSource(value = {"89.0, 1.72","95.0, 1.75","110.0, 1.78"})
+    @CsvFileSource(resources = "/diet-recommended-input-data.csv", numLinesToSkip = 1)
+    void should_Return_True_When_DietRecommended(Double coderWeight, Double coderHeight) {
         // given
-        double weight = 89.0;
-        double height = 1.72;
+        double weight = coderWeight;
+        double height = coderHeight;
         // when
         boolean recommended = BMICalculator.isDietRecommended(weight, height);
         // then

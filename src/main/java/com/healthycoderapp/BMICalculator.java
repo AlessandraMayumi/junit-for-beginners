@@ -1,4 +1,4 @@
-package main.java.com.healthycoderapp;
+package com.healthycoderapp;
 
 import java.util.Comparator;
 import java.util.List;

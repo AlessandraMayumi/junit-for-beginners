@@ -1,4 +1,4 @@
-package main.java.com.healthycoderapp;
+package com.healthycoderapp;
 
 public class DietPlanner {
 
